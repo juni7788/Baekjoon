@@ -3,12 +3,12 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class 16234 {
-
-	static int N, L, R, count, limit, part;
-	static int [] people;
+	
 	static int [][] union, map;
+	static int N, L, R, count, limit, part;
 	static int [][] move = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-	static Pairlist [] list;
+	static LinkedList <Pair> [] list;
+	static int [] people;
 	static Queue <Pair> queue;
 			
 	public static void main(String args[]) {
@@ -23,8 +23,9 @@ public class 16234 {
 				map[i][j] = scanner.nextInt();
 		}
 		
-		for (; ;count++) {
+		while (true) {
 			set_default();
+			part = 0;
 
 			for (int i = 0; i < N; i++) {
 				for (int j = 0; j < N; j++) {
@@ -75,19 +76,19 @@ public class 16234 {
 					map[x][y] = avg;
 				}
 			}
+			count += 1;
 		}
 		
 		System.out.println(count);
-		scanner.close();
 	}
 	
 	static void set_default() {
-		list = new Pairlist [N*N+2];
+		list = new LinkedList [N*N+2];
 		people = new int [N*N+2];
 		union = new int [N][N];
 		
 		for (int i = 0; i < N*N+2; i++)
-			list[i] = new Pairlist ();
+			list[i] = new LinkedList <Pair> ();
 	}
 	
 	static void set_start(int x, int y, int num) {
@@ -97,7 +98,6 @@ public class 16234 {
 		list[num].add(new Pair (x, y));
 		union[x][y] = num;
 		limit = num;
-		part = 0;
 	}
 }
 
@@ -109,5 +109,3 @@ class Pair {
 		this.y = y;
 	}
 }
-
-class Pairlist extends LinkedList <Pair> {}
