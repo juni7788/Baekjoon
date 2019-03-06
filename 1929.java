@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class 1929 {
 	
 	static boolean [] check;
 	static int M, N;
