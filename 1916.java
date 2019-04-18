@@ -46,17 +46,15 @@ public class 1916 {
 			Pair pair = prq.poll();
 			int idx = pair.idx;
 			int dst = pair.tot;
+			if (dist[idx] < dst)
+				continue;
 			vst[idx] = true;
 			
 			for (int i = 0; i < N; i++) {
-				if (idx != i && adj[idx][i] != INF)
-					dist[i] = Math.min(dist[i], adj[idx][i] + dist[idx]);
-			}
-			
-			prq.clear();
-			for (int i = 0; i < N; i++) {
-				if (!vst[i])
+				if (dist[idx] + adj[idx][i] < dist[i]) {
+					dist[i] = dist[idx] + adj[idx][i];
 					prq.offer(new Pair (i, dist[i]));
+				}
 			}
 		}
 		
